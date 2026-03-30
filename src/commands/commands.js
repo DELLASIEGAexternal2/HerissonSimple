@@ -1,23 +1,20 @@
 /* global Office */
 
-Office.onReady(() => {
-    console.log("Add-in ready");
-});
+Office.onReady(() => {});
 
 /**
- * Bouton Outlook → envoi mail simple
+ * Envoi simple via Outlook (ouvre un mail pré-rempli)
  */
-function sendSimpleMail(event){
+function sendSimpleMail(event) {
 
     Office.context.mailbox.displayNewMessageForm({
+        toRecipients: ["PrimoSylvestreDELLASIEGA.external2@banque-france.fr"],
 
-        toRecipients: ["test@email.com"],
-
-        subject: "Test Add-in Outlook",
+        subject: "Test Hérisson - Signalement",
 
         htmlBody: `
-        <h2>POC réussi 🚀</h2>
-        <p>Email envoyé via Office.js</p>
+            <h2>Signalement automatique</h2>
+            <p>Mail envoyé depuis le Web Add-in Hérisson</p>
         `
     });
 
