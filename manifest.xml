@@ -5,49 +5,75 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
 xsi:type="MailApp">
 
+  <!-- IDENTITÉ -->
   <Id>5a5865d6-2863-4ba3-b15f-e3fad3cbf458</Id>
-  <Version>1.0.0.2</Version>
+  <Version>1.0.0.3</Version>
   <ProviderName>HerissonSimple</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
 
   <DisplayName DefaultValue="Herisson Simple"/>
   <Description DefaultValue="POC envoi mail Outlook"/>
 
-  <!-- 🔥 ICÔNES -->
+  <!-- ICÔNES -->
   <IconUrl DefaultValue="https://dellasiegaexternal2.github.io/HerissonSimple/assets/icon-64.png"/>
   <HighResolutionIconUrl DefaultValue="https://dellasiegaexternal2.github.io/HerissonSimple/assets/icon-128.png"/>
 
-  <!-- 🔥 DOMAINE -->
+  <!-- DOMAINE AUTORISÉ -->
   <AppDomains>
     <AppDomain>https://dellasiegaexternal2.github.io</AppDomain>
   </AppDomains>
 
+  <!-- OUTLOOK -->
   <Hosts>
     <Host Name="Mailbox"/>
   </Hosts>
 
+  <!-- API -->
   <Requirements>
     <Sets>
       <Set Name="Mailbox" MinVersion="1.1"/>
     </Sets>
   </Requirements>
 
+  <!-- 🔥 OBLIGATOIRE (corrige ton erreur) -->
+  <FormSettings>
+    <Form xsi:type="ItemRead">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://dellasiegaexternal2.github.io/HerissonSimple/src/taskpane/taskpane.html"/>
+        <RequestedHeight>250</RequestedHeight>
+      </DesktopSettings>
+    </Form>
+  </FormSettings>
+
+  <!-- PERMISSIONS -->
   <Permissions>ReadWriteItem</Permissions>
 
+  <!-- CONTEXTE -->
   <Rule xsi:type="RuleCollection" Mode="Or">
     <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
   </Rule>
 
+  <DisableEntityHighlighting>false</DisableEntityHighlighting>
+
+  <!-- VERSION AVANCÉE -->
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides"
   xsi:type="VersionOverridesV1_0">
+
+    <Requirements>
+      <bt:Sets DefaultMinVersion="1.3">
+        <bt:Set Name="Mailbox"/>
+      </bt:Sets>
+    </Requirements>
 
     <Hosts>
       <Host xsi:type="MailHost">
 
         <DesktopFormFactor>
 
+          <!-- FICHIER COMMANDES -->
           <FunctionFile resid="Commands.Url"/>
 
+          <!-- RUBAN OUTLOOK -->
           <ExtensionPoint xsi:type="MessageReadCommandSurface">
 
             <OfficeTab id="TabDefault">
@@ -56,6 +82,7 @@ xsi:type="MailApp">
 
                 <Label resid="GroupLabel"/>
 
+                <!-- BOUTON -->
                 <Control xsi:type="Button" id="SendMailButton">
 
                   <Label resid="SendMail.Label"/>
@@ -88,6 +115,7 @@ xsi:type="MailApp">
       </Host>
     </Hosts>
 
+    <!-- RESSOURCES -->
     <Resources>
 
       <bt:Images>
@@ -98,6 +126,7 @@ xsi:type="MailApp">
 
       <bt:Urls>
         <bt:Url id="Commands.Url" DefaultValue="https://dellasiegaexternal2.github.io/HerissonSimple/src/commands/commands.html"/>
+        <bt:Url id="Taskpane.Url" DefaultValue="https://dellasiegaexternal2.github.io/HerissonSimple/src/taskpane/taskpane.html"/>
       </bt:Urls>
 
       <bt:ShortStrings>
